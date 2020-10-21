@@ -1,0 +1,152 @@
+def reverse(value: u8) -> u8:
+    """Reverse the bit order.
+
+    """
+
+    value = ((value & 0xaa) >> 1) | ((value & 0x55) << 1)
+    value = ((value & 0xcc) >> 2) | ((value & 0x33) << 2)
+
+    return ((value & 0xf0) >> 4) | ((value & 0x0f) << 4)
+
+def reverse(value: u32) -> u32:
+    """Reverse the bit order.
+
+    """
+
+    value = ((value & 0xaaaaaaaa) >> 1) | ((value & 0x55555555) << 1)
+    value = ((value & 0xcccccccc) >> 2) | ((value & 0x33333333) << 2)
+    value = ((value & 0xf0f0f0f0) >> 4) | ((value & 0x0f0f0f0f) << 4)
+    value = ((value & 0xff00ff00) >> 8) | ((value & 0x00ff00ff) << 8)
+
+    return (value >> 16) | (value << 16)
+
+def leading_ones(value: u32) -> u32:
+    """Count number of leading bits that are one.
+
+    """
+
+    for i in range(32):
+        if (value & (0x80000000 >> i)) == 0:
+            return i
+
+    return 32
+
+def leading_zeros(value: u32) -> u32:
+    """Count number of leading bits that are zero.
+
+    """
+
+    return leading_ones(~value)
+
+def count_ones(value: u32) -> u32:
+    """Count number of bits that are one.
+
+    """
+
+    value = value - ((value >> 1) & 0x55555555)
+    value = (value & 0x33333333) + ((value >> 2) & 0x33333333)
+
+    return (((value + (value >> 4)) & 0x0f0f0f0f) * 0x01010101) >> 24
+
+def count_zeros(value: u32) -> u32:
+    """Count number of bits that are zero.
+
+    """
+
+    return count_ones(~value)
+
+def rotate_left(value: u32, count: u32) -> u32:
+    """Rotate bits left count times.
+
+    """
+
+    count %= 32
+
+    return (value << count) | (value >> (32 - count))
+
+def rotate_right(value: u32, count: u32) -> u32:
+    """Rotate bits right count times.
+
+    """
+
+    count %= 32
+
+    return (value >> count) | (value << (32 - count))
+
+@test
+def test_reverse_u8():
+    value: u8 = 0x12
+    assert_eq(reverse(value), 0x48)
+
+@test
+def test_reverse_u32():
+    value: u32 = 0x12345678
+    assert_eq(reverse(value), 0x1e6a2c48)
+
+@test
+def test_leading_ones():
+    value: u32 = 0x00000000
+    assert_eq(leading_ones(value), 0)
+
+    value = 0x80000000
+    assert_eq(leading_ones(value), 1)
+
+    value = 0xffffffff
+    assert_eq(leading_ones(value), 32)
+
+    value = 0xffffffef
+    assert_eq(leading_ones(value), 27)
+
+@test
+def test_leading_zeros():
+    value: u32 = 0xffffffff
+    assert_eq(leading_zeros(value), 0)
+
+    value = 0x7fffffff
+    assert_eq(leading_zeros(value), 1)
+
+    value = 0x00000000
+    assert_eq(leading_zeros(value), 32)
+
+    value = 0x00000010
+    assert_eq(leading_zeros(value), 27)
+
+@test
+def test_count_ones():
+    value: u32 = 0x00000000
+    assert_eq(count_ones(value), 0)
+
+    value = 0x10003000
+    assert_eq(count_ones(value), 3)
+
+    value = 0xffffffff
+    assert_eq(count_ones(value), 32)
+
+@test
+def test_count_zeros():
+    value: u32 = 0xffffffff
+    assert_eq(count_zeros(value), 0)
+
+    value = 0xefffcfff
+    assert_eq(count_zeros(value), 3)
+
+    value = 0x00000000
+    assert_eq(count_zeros(value), 32)
+
+@test
+def test_rotate_left():
+    value: u32 = 0x12345678
+    assert_eq(rotate_left(value, 8), 0x34567812)
+    assert_eq(rotate_left(value, 8 + 32), 0x34567812)
+
+    value = 0x00000001
+    assert_eq(rotate_left(value, 1), 0x00000002)
+
+@test
+def test_rotate_right():
+    value: u32 = 0x12345678
+    assert_eq(rotate_right(value, 8), 0x78123456)
+    assert_eq(rotate_right(value, 8 + 32), 0x78123456)
+
+    value = 0x00000001
+    assert_eq(rotate_right(value, 1), 0x80000000)
