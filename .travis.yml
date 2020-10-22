@@ -16,4 +16,3 @@ install:
 
 script:
   - env CXX=g++-9 mys test
-  - env CXX=g++-9 mys run
