@@ -1,5 +1,3 @@
-|buildstatus|_
-
 Bits
 ====
 
@@ -20,19 +18,16 @@ Examples
 
    def main():
        value: u32 = 0x12345678
-       assert_eq(reverse(value), 0x1e6a2c48)
-       assert_eq(leading_ones(value), 0)
-       assert_eq(leading_zeros(value), 3)
-       assert_eq(count_ones(value), 13)
-       assert_eq(count_zeros(value), 19)
-       assert_eq(rotate_left(value, 8), 0x34567812)
-       assert_eq(rotate_right(value, 8), 0x78123456)
+       assert reverse(value) == 0x1e6a2c48
+       assert leading_ones(value) == 0
+       assert leading_zeros(value) == 3
+       assert count_ones(value) == 13
+       assert count_zeros(value) == 19
+       assert rotate_left(value, 8) == 0x34567812
+       assert rotate_right(value, 8) == 0x78123456
 
 .. code-block:: text
 
    $ mys run
 
-.. |buildstatus| image:: https://travis-ci.com/eerimoq/mys-bits.svg?branch=master
-.. _buildstatus: https://travis-ci.com/eerimoq/mys-bits
-
-.. _Mys programming language: https://github.com/eerimoq/mys
+.. _Mys programming language: https://github.com/mys-lang/mys
