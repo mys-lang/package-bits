@@ -3,7 +3,7 @@
 About
 =====
 
-Basic bits operations.
+Basic bits operations in the `Mys programming language`_.
 
 Project: https://github.com/mys-lang/package-bits
 
@@ -37,3 +37,5 @@ Functions and types
 
 .. |test| image:: https://github.com/mys-lang/package-bits/actions/workflows/pythonpackage.yml/badge.svg
 .. _test: https://github.com/mys-lang/package-bits/actions/workflows/pythonpackage.yml
+
+.. _Mys programming language: https://mys-lang.org
