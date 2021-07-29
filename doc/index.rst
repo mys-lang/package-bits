@@ -30,8 +30,8 @@ Examples
        assert rotate_left(value, 8) == 0x34567812
        assert rotate_right(value, 8) == 0x78123456
 
-Functions and types
-===================
+API
+===
 
 .. mysfile:: src/lib.mys
 
