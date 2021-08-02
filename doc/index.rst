@@ -12,7 +12,7 @@ Project: https://github.com/mys-lang/package-bits
 Examples
 ========
 
-.. code-block:: python
+.. code-block:: mys
 
    from bits import reverse
    from bits import leading_ones
