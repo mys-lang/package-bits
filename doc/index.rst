@@ -22,7 +22,7 @@ Examples
    from bits import rotate_left
    from bits import rotate_right
 
-   def main():
+   func main():
        value: u32 = 0x12345678
        assert reverse(value) == 0x1e6a2c48
        assert leading_ones(value) == 0

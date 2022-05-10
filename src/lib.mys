@@ -1,4 +1,4 @@
-# def reverse(value: u8) -> u8:
+# func reverse(value: u8) -> u8:
 #     """Reverse the bit order.
 #
 #     """
@@ -8,7 +8,7 @@
 #
 #     return ((value & 0xf0) >> 4) | ((value & 0x0f) << 4)
 
-def reverse(value: u32) -> u32:
+func reverse(value: u32) -> u32:
     """Reverse the bit order.
 
     """
@@ -20,7 +20,7 @@ def reverse(value: u32) -> u32:
 
     return (value >> 16) | (value << 16)
 
-def leading_ones(value: u32) -> u32:
+func leading_ones(value: u32) -> u32:
     """Count number of leading bits that are one.
 
     """
@@ -31,14 +31,14 @@ def leading_ones(value: u32) -> u32:
 
     return 32
 
-def leading_zeros(value: u32) -> u32:
+func leading_zeros(value: u32) -> u32:
     """Count number of leading bits that are zero.
 
     """
 
     return leading_ones(~value)
 
-def count_ones(value: u32) -> u32:
+func count_ones(value: u32) -> u32:
     """Count number of bits that are one.
 
     """
@@ -48,14 +48,14 @@ def count_ones(value: u32) -> u32:
 
     return (((value + (value >> 4)) & 0x0f0f0f0f) * 0x01010101) >> 24
 
-def count_zeros(value: u32) -> u32:
+func count_zeros(value: u32) -> u32:
     """Count number of bits that are zero.
 
     """
 
     return count_ones(~value)
 
-def rotate_left(value: u32, count: u32) -> u32:
+func rotate_left(value: u32, count: u32) -> u32:
     """Rotate bits left count times.
 
     """
@@ -64,7 +64,7 @@ def rotate_left(value: u32, count: u32) -> u32:
 
     return (value << count) | (value >> (32 - count))
 
-def rotate_right(value: u32, count: u32) -> u32:
+func rotate_right(value: u32, count: u32) -> u32:
     """Rotate bits right count times.
 
     """
@@ -74,17 +74,17 @@ def rotate_right(value: u32, count: u32) -> u32:
     return (value >> count) | (value << (32 - count))
 
 # @test
-# def test_reverse_u8():
+# func test_reverse_u8():
 #     value: u8 = 0x12
 #     assert reverse(value) == 0x48
 
 @test
-def test_reverse_u32():
+func test_reverse_u32():
     value: u32 = 0x12345678
     assert reverse(value) == 0x1e6a2c48
 
 @test
-def test_leading_ones():
+func test_leading_ones():
     value: u32 = 0x00000000
     assert leading_ones(value) == 0
 
@@ -98,7 +98,7 @@ def test_leading_ones():
     assert leading_ones(value) == 27
 
 @test
-def test_leading_zeros():
+func test_leading_zeros():
     value: u32 = 0xffffffff
     assert leading_zeros(value) == 0
 
@@ -112,7 +112,7 @@ def test_leading_zeros():
     assert leading_zeros(value) == 27
 
 @test
-def test_count_ones():
+func test_count_ones():
     value: u32 = 0x00000000
     assert count_ones(value) == 0
 
@@ -123,7 +123,7 @@ def test_count_ones():
     assert count_ones(value) == 32
 
 @test
-def test_count_zeros():
+func test_count_zeros():
     value: u32 = 0xffffffff
     assert count_zeros(value) == 0
 
@@ -134,7 +134,7 @@ def test_count_zeros():
     assert count_zeros(value) == 32
 
 @test
-def test_rotate_left():
+func test_rotate_left():
     value: u32 = 0x12345678
     assert rotate_left(value, 8) == 0x34567812
     assert rotate_left(value, 8 + 32) == 0x34567812
@@ -143,7 +143,7 @@ def test_rotate_left():
     assert rotate_left(value, 1) == 0x00000002
 
 @test
-def test_rotate_right():
+func test_rotate_right():
     value: u32 = 0x12345678
     assert rotate_right(value, 8) == 0x78123456
     assert rotate_right(value, 8 + 32) == 0x78123456
