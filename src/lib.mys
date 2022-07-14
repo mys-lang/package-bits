@@ -78,13 +78,11 @@ func rotate_right(value: u32, count: u32) -> u32:
 #     value: u8 = 0x12
 #     assert reverse(value) == 0x48
 
-@test
-func test_reverse_u32():
+test reverse_u32():
     value: u32 = 0x12345678
     assert reverse(value) == 0x1e6a2c48
 
-@test
-func test_leading_ones():
+test leading_ones():
     value: u32 = 0x00000000
     assert leading_ones(value) == 0
 
@@ -97,8 +95,7 @@ func test_leading_ones():
     value = 0xffffffef
     assert leading_ones(value) == 27
 
-@test
-func test_leading_zeros():
+test leading_zeros():
     value: u32 = 0xffffffff
     assert leading_zeros(value) == 0
 
@@ -111,8 +108,7 @@ func test_leading_zeros():
     value = 0x00000010
     assert leading_zeros(value) == 27
 
-@test
-func test_count_ones():
+test count_ones():
     value: u32 = 0x00000000
     assert count_ones(value) == 0
 
@@ -122,8 +118,7 @@ func test_count_ones():
     value = 0xffffffff
     assert count_ones(value) == 32
 
-@test
-func test_count_zeros():
+test count_zeros():
     value: u32 = 0xffffffff
     assert count_zeros(value) == 0
 
@@ -133,8 +128,7 @@ func test_count_zeros():
     value = 0x00000000
     assert count_zeros(value) == 32
 
-@test
-func test_rotate_left():
+test rotate_left():
     value: u32 = 0x12345678
     assert rotate_left(value, 8) == 0x34567812
     assert rotate_left(value, 8 + 32) == 0x34567812
@@ -142,8 +136,7 @@ func test_rotate_left():
     value = 0x00000001
     assert rotate_left(value, 1) == 0x00000002
 
-@test
-func test_rotate_right():
+test rotate_right():
     value: u32 = 0x12345678
     assert rotate_right(value, 8) == 0x78123456
     assert rotate_right(value, 8 + 32) == 0x78123456
